@@ -1,0 +1,6 @@
+**/target
+**/*.rs.bk
+**/out.log
+**/old.rs
+**/out.rs
+**/proptest-regressions

@@ -1,0 +1,8 @@
+[package]
+name = "combine_duration_parser"
+version = "0.1.0"
+authors = ["Robert Masen <r@robertmasen.pizza>"]
+
+[dependencies]
+duration = { path = "../duration"}
+combine = "3"

@@ -1,0 +1,8 @@
+[package]
+name = "random_durations"
+version = "0.1.0"
+authors = ["Robert Masen <r@robertmasen.pizza>"]
+
+[dependencies]
+rand = "0.5"
+duration = {path = "../duration"}

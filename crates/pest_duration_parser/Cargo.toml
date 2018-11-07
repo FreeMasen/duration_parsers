@@ -1,0 +1,9 @@
+[package]
+name = "pest_duration_parser"
+version = "0.1.0"
+authors = ["Robert Masen <r@robertmasen.pizza>"]
+
+[dependencies]
+duration = { path = "../duration"}
+pest = "2.0"
+pest_derive = "2.0"

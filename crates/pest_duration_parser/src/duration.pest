@@ -1,0 +1,14 @@
+
+Duration = { "P" ~ date_section? ~ time_section? }
+date_section = { year? ~ minute_or_month? ~ week? ~ day? }
+time_section = { "T" ~ hour? ~ minute_or_month? ~ second? }
+year = { number ~ "Y" }
+week = { number ~ "W" }
+day = { number ~ "D" }
+hour = { number ~ "H" }
+minute_or_month = { number ~ "M" }
+second = { number ~ "S" }
+number = { integer ~ remainder? }
+remainder = { "." ~ integer }
+integer = { decimal+ }
+decimal = { ASCII_DIGIT }

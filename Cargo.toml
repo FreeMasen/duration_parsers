@@ -1,0 +1,34 @@
+[package]
+name = "parsers"
+version = "0.1.0"
+authors = ["Robert Masen <r@robertmasen.pizza>"]
+
+[features]
+nom = ["nom_duration_parser"]
+pest = ["pest_duration_parser"]
+combine = ["combine_duration_parser"]
+
+[dependencies]
+duration = {path = "./crates/duration"}
+random_durations = {path = "./crates/random_durations"}
+
+[dependencies.nom_duration_parser]
+path = "./crates/nom_duration_parser"
+optional = true
+
+[dependencies.pest_duration_parser]
+path = "./crates/pest_duration_parser"
+optional = true
+
+[dependencies.combine_duration_parser]
+path = "./crates/combine_duration_parser"
+optional = true
+
+[workspace]
+members = [
+    "crates/combine_duration_parser",
+    "crates/duration",
+    "crates/nom_duration_parser",
+    "crates/pest_duration_parser",
+    "crates/random_durations",
+]
