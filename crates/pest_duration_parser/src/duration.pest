@@ -1,7 +1,19 @@
 
-Duration = { "P" ~ date_section? ~ time_section? }
-date_section = { year? ~ minute_or_month? ~ week? ~ day? }
-time_section = { "T" ~ hour? ~ minute_or_month? ~ second? }
+Duration = {
+    "P" ~ ((date_section ~ time_section?) | (date_section? ~ time_section))
+}
+date_section = {
+    (year? ~ minute_or_month? ~ week? ~ day) |
+    (year? ~ minute_or_month? ~ week ~ day?) |
+    (year? ~ minute_or_month ~ week? ~ day?) |
+    (year ~ minute_or_month? ~ week? ~ day?)
+}
+time_section = { "T" ~ (
+    (hour? ~ minute_or_month? ~ second) |
+    (hour? ~ minute_or_month ~ second?) |
+    (hour ~ minute_or_month? ~ second?)
+    )
+}
 year = { number ~ "Y" }
 week = { number ~ "W" }
 day = { number ~ "D" }

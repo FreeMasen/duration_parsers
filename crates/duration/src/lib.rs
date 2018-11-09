@@ -86,6 +86,39 @@ impl Duration {
         && self.minutes.is_none()
         && self.seconds.is_none()
     }
+
+    pub fn human_readable(&self) -> String {
+        let mut hits = Vec::with_capacity(7);
+        if let Some(y) = self.years {
+            hits.push(format!("{} years", y));
+        }
+        if let Some(m) = self.months {
+            hits.push(format!("{} months", m));
+        }
+        if let Some(w) = self.weeks {
+            hits.push(format!("{} weeks", w));
+        }
+        if let Some(d) = self.days {
+            hits.push(format!("{} days", d));
+        }
+        if let Some(h) = self.hours {
+            hits.push(format!("{} hours", h));
+        }
+        if let Some(m) = self.minutes {
+            hits.push(format!("{} minutes", m))
+        }
+        if let Some(s) = self.seconds {
+            hits.push(format!("{} seconds", s))
+        }
+
+        hits.iter().enumerate().map(|(i, s)| {
+            if i == hits.len() - 1 {
+                format!("and {}", s)
+            } else {
+                format!("{} ",s)
+            }
+        }).collect()
+    }
 }
 
 impl ::std::fmt::Display for Duration {

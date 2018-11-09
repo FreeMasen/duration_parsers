@@ -7,6 +7,8 @@ authors = ["Robert Masen <r@robertmasen.pizza>"]
 nom = ["nom_duration_parser"]
 pest = ["pest_duration_parser"]
 combine = ["combine_duration_parser"]
+hand = ["hand_rolled_duration_parser"]
+bench = ["nom", "pest", "combine", "hand"]
 
 [dependencies]
 duration = {path = "./crates/duration"}
@@ -24,11 +26,16 @@ optional = true
 path = "./crates/combine_duration_parser"
 optional = true
 
+[dependencies.hand_rolled_duration_parser]
+path = "./crates/hand_rolled_duration_parser"
+optional = true
+
 [workspace]
 members = [
     "crates/combine_duration_parser",
     "crates/duration",
     "crates/nom_duration_parser",
     "crates/pest_duration_parser",
+    "crates/hand_rolled_duration_parser",
     "crates/random_durations",
 ]

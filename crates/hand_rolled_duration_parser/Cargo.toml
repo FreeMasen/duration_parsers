@@ -1,8 +1,7 @@
 [package]
-name = "nom_duration_parser"
+name = "hand_rolled_duration_parser"
 version = "0.1.0"
 authors = ["Robert Masen <r@robertmasen.pizza>"]
 
 [dependencies]
-duration = { path = "../duration"}
-nom = "4"
+duration = {path = "../duration"}
