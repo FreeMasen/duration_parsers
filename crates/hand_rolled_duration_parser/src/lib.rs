@@ -1,5 +1,5 @@
 extern crate duration;
-use duration::Duration;
+use duration::{Duration, DurationPart};
 
 
 pub fn parse(s: &str) -> Result<Duration, String> {
@@ -14,7 +14,7 @@ pub fn parse(s: &str) -> Result<Duration, String> {
         if date_part != "" {
             found_one = true;
             for part in parse_parts(date_part, false)? {
-                update_duration(&mut ret, &part);
+                update_duration(&mut ret, part);
             }
         }
     }
@@ -22,7 +22,7 @@ pub fn parse(s: &str) -> Result<Duration, String> {
         if time_part != "" {
             found_one = true;
             for part in parse_parts(time_part, true)? {
-                update_duration(&mut ret, &part);
+                update_duration(&mut ret, part);
             }
         }
     }
@@ -71,26 +71,16 @@ fn parse_parts(s: &str, is_time: bool) -> Result<Vec<DurationPart>, String> {
     Ok(ret)
 }
 
-fn update_duration(d: &mut Duration, part: &DurationPart) {
+fn update_duration(d: &mut Duration, part: DurationPart) {
     match part {
-        DurationPart::Years(v) => d.set_years(*v),
-        DurationPart::Months(v) => d.set_months(*v),
-        DurationPart::Weeks(v) => d.set_weeks(*v),
-        DurationPart::Days(v) => d.set_days(*v),
-        DurationPart::Hours(v) => d.set_hours(*v),
-        DurationPart::Minutes(v) => d.set_minutes(*v),
-        DurationPart::Seconds(v) => d.set_seconds(*v),
+        DurationPart::Years(v) => d.set_years(v),
+        DurationPart::Months(v) => d.set_months(v),
+        DurationPart::Weeks(v) => d.set_weeks(v),
+        DurationPart::Days(v) => d.set_days(v),
+        DurationPart::Hours(v) => d.set_hours(v),
+        DurationPart::Minutes(v) => d.set_minutes(v),
+        DurationPart::Seconds(v) => d.set_seconds(v),
     }
-}
-
-enum DurationPart {
-    Years(f32),
-    Months(f32),
-    Weeks(f32),
-    Days(f32),
-    Hours(f32),
-    Minutes(f32),
-    Seconds(f32),
 }
 
 #[cfg(test)]

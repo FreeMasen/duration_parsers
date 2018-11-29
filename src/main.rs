@@ -16,7 +16,7 @@ fn main() {
 
 #[cfg(
     all(
-        any(feature = "nom", feature = "combine", feature = "pest"),
+        any(feature = "nom", feature = "combine", feature = "pest", feature = "hand"),
         not(feature = "bench")
         )
 )]

@@ -2,7 +2,7 @@ extern crate duration;
 #[macro_use]
 extern crate nom;
 use nom::types::CompleteStr;
-use duration::Duration;
+use duration::{Duration, DurationPart};
 pub fn parse(s: &str) -> Result<Duration, String> {
     let pair = duration(s.into()).map_err(|e| format!("{}", e))?;
     Ok(pair.1)
@@ -91,14 +91,4 @@ fn digit(c: char) -> bool {
 
 fn parse_float(s: CompleteStr) -> Result<f32, ::std::num::ParseFloatError> {
     s.parse()
-}
-
-enum DurationPart {
-    Years(f32),
-    Months(f32),
-    Weeks(f32),
-    Days(f32),
-    Hours(f32),
-    Minutes(f32),
-    Seconds(f32),
 }

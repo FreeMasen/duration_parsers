@@ -1,5 +1,5 @@
 extern crate duration;
-use duration::Duration;
+use duration::{Duration, DurationPart};
 extern crate combine;
 use combine::{
     choice,
@@ -112,14 +112,4 @@ where
         };
         f.parse().unwrap()
     })
-}
-
-enum DurationPart {
-    Years(f32),
-    Months(f32),
-    Weeks(f32),
-    Days(f32),
-    Hours(f32),
-    Minutes(f32),
-    Seconds(f32),
 }
