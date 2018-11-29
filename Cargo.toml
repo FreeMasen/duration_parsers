@@ -13,6 +13,7 @@ bench = ["nom", "pest", "combine", "hand"]
 [dependencies]
 duration = {path = "./crates/duration"}
 random_durations = {path = "./crates/random_durations"}
+lazy_static = "1"
 
 [dependencies.nom_duration_parser]
 path = "./crates/nom_duration_parser"

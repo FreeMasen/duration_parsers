@@ -82,38 +82,16 @@ named!(duration_part<CompleteStr, (f32, CompleteStr)>,
 
 
 named!(float<CompleteStr, f32>,
-    do_parse!(
-        int: integer >>
-        rem: opt!(remainder) >>
-        (parse_float(int, rem))
-    )
-);
-
-named!(remainder<CompleteStr, CompleteStr>,
-    do_parse!(
-        char!('.') >>
-        rem: integer >>
-        (rem)
-    )
-);
-
-named!(integer<CompleteStr, CompleteStr>,
-    take_while1!(digit)
+    map_res!(take_while1!(digit), parse_float)
 );
 
 fn digit(c: char) -> bool {
-    c.is_digit(10)
+    c.is_digit(10) || c == '.'
 }
 
-fn parse_float(int: CompleteStr, rem: Option<CompleteStr>) -> f32 {
-    let value = if let Some(rem) = rem {
-        format!("{}.{}", int, rem)
-    } else {
-        int.to_string()
-    };
-    value.parse().unwrap()
+fn parse_float(s: CompleteStr) -> Result<f32, ::std::num::ParseFloatError> {
+    s.parse()
 }
-
 
 enum DurationPart {
     Years(f32),
