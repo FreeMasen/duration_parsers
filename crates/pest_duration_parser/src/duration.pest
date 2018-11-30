@@ -1,26 +1,28 @@
 
 Duration = {
-    "P" ~ ((date_section ~ time_section?) | (date_section? ~ time_section))
+    "P" ~ ((DateSection ~ TimeSection?) | (DateSection? ~ TimeSection))
 }
-date_section = {
-    (year? ~ minute_or_month? ~ week? ~ day) |
-    (year? ~ minute_or_month? ~ week ~ day?) |
-    (year? ~ minute_or_month ~ week? ~ day?) |
-    (year ~ minute_or_month? ~ week? ~ day?)
+DateSection = {
+    (Year? ~ MinuteOrMonth? ~ Week? ~ Day) |
+    (Year? ~ MinuteOrMonth? ~ Week ~ Day?) |
+    (Year? ~ MinuteOrMonth ~ Week? ~ Day?) |
+    (Year ~ MinuteOrMonth? ~ Week? ~ Day?)
 }
-time_section = { "T" ~ (
-    (hour? ~ minute_or_month? ~ second) |
-    (hour? ~ minute_or_month ~ second?) |
-    (hour ~ minute_or_month? ~ second?)
+TimeSection = { "T" ~ (
+    (Hour? ~ MinuteOrMonth? ~ Second) |
+    (Hour? ~ MinuteOrMonth ~ Second?) |
+    (Hour ~ MinuteOrMonth? ~ Second?)
     )
 }
-year = { number ~ "Y" }
-week = { number ~ "W" }
-day = { number ~ "D" }
-hour = { number ~ "H" }
-minute_or_month = { number ~ "M" }
-second = { number ~ "S" }
-number = { integer ~ remainder? }
-remainder = { "." ~ integer }
-integer = { decimal+ }
-decimal = { ASCII_DIGIT }
+Year = { Number ~ "Y" }
+Week = { Number ~ "W" }
+Day = { Number ~ "D" }
+Hour = { Number ~ "H" }
+MinuteOrMonth = { Number ~ "M" }
+Second = { Number ~ "S" }
+Number = { (Integer ~ Remainder?) |
+           (Integer? ~ Remainder)
+}
+Remainder = { "." ~ Integer }
+Integer = { Decimal+ }
+Decimal = { ASCII_DIGIT }

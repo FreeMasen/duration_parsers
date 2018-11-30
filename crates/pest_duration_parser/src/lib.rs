@@ -23,10 +23,10 @@ fn assemble_parts(pair: pest::iterators::Pair<Rule>) -> Result<Duration, String>
     let mut ret = Duration::new();
     for part in pair.into_inner() {
         match part.as_rule() {
-            Rule::date_section => {
+            Rule::DateSection => {
                 assemble_part(&mut ret, part, false)?;
             },
-            Rule::time_section => {
+            Rule::TimeSection => {
                 assemble_part(&mut ret, part, true)?;
             },
             _ => unreachable!()
@@ -45,10 +45,10 @@ fn assemble_part(d: &mut Duration, pair: pest::iterators::Pair<Rule>, time: bool
 fn update_duration(d: &mut Duration, pair: &Pair<Rule>, time: bool) -> Result<(), String> {
     let f = get_float(pair)?;
     match pair.as_rule() {
-        Rule::year => {
+        Rule::Year => {
             d.set_years(f);
         },
-        Rule::minute_or_month => {
+        Rule::MinuteOrMonth => {
             if time {
                 //minute
                 d.set_minutes(f);
@@ -57,16 +57,16 @@ fn update_duration(d: &mut Duration, pair: &Pair<Rule>, time: bool) -> Result<()
                 d.set_months(f);
             }
         },
-        Rule::week => {
+        Rule::Week => {
             d.set_weeks(f);
         },
-        Rule::day => {
+        Rule::Day => {
             d.set_days(f);
         }
-        Rule::hour => {
+        Rule::Hour => {
             d.set_hours(f);
         }
-        Rule::second => {
+        Rule::Second => {
             d.set_seconds(f);
         },
         _ => unreachable!()
