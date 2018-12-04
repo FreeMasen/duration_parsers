@@ -62,12 +62,12 @@ fn combine_1000(b: &mut Bencher) {
 #[cfg(feature = "hand")]
 #[bench]
 fn hand_rolled(b: &mut Bencher) {
-    single(b, &combine_duration_parser::parse);
+    single(b, &hand_rolled_duration_parser::parse);
 }
 #[cfg(feature = "hand")]
 #[bench]
 fn hand_rolled_1000(b: &mut Bencher) {
-    thousand(b, &combine_duration_parser::parse);
+    thousand(b, &hand_rolled_duration_parser::parse);
 }
 fn single(b: &mut Bencher, f: &impl Fn(&str) -> Result<Duration, String>) {
     b.iter(|| {
